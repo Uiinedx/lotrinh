@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Roadmap — 7 Tháng</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0e0f11;
+  --surface: #16181c;
+  --surface2: #1e2026;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #e8e6df;
+  --muted: #7a7870;
+  --muted2: #5a5852;
+
+  --cambridge: #2a7fff;
+  --cambridge-soft: rgba(42,127,255,0.12);
+  --cambridge-glow: rgba(42,127,255,0.25);
+
+  --grammar: #00c48c;
+  --grammar-soft: rgba(0,196,140,0.12);
+
+  --mindset: #ff7043;
+  --mindset-soft: rgba(255,112,67,0.12);
+
+  --gold: #f5c842;
+  --gold-soft: rgba(245,200,66,0.1);
+
+  --p1: #5b8cff;
+  --p2: #00c48c;
+  --p3: #ff9800;
+  --p4: #b06bff;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+/* Header */
+.header { margin-bottom: 3rem; }
+.header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--cambridge); margin-bottom: 10px; }
+.header-title { font-family: 'DM Serif Display', serif; font-size: 42px; line-height: 1.1; color: var(--text); margin-bottom: 12px; }
+.header-title em { font-style: italic; color: var(--gold); }
+.header-sub { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 520px; }
+
+/* Book legend */
+.legend { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.legend-item { display: flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 20px; border: 1px solid var(--border2); background: var(--surface); font-size: 12px; font-weight: 500; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.legend-item.cam { border-color: rgba(42,127,255,0.3); color: #7ab4ff; }
+.legend-item.cam .legend-dot { background: var(--cambridge); }
+.legend-item.gram { border-color: rgba(0,196,140,0.3); color: #5de3be; }
+.legend-item.gram .legend-dot { background: var(--grammar); }
+.legend-item.mind { border-color: rgba(255,112,67,0.3); color: #ffa07a; }
+.legend-item.mind .legend-dot { background: var(--mindset); }
+
+/* Tab switcher */
+.tabs { display: flex; gap: 4px; margin-bottom: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 4px; width: fit-content; }
+.tab-btn { padding: 8px 20px; border-radius: 7px; border: none; background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.tab-btn.active { background: var(--surface2); color: var(--text); border: 1px solid var(--border2); }
+.tab-btn:hover:not(.active) { color: var(--text); }
+
+/* View panels */
+.view { display: none; }
+.view.active { display: block; }
+
+/* ===================== MONTHLY VIEW ===================== */
+.timeline-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 2.5rem; }
+.tl-cell { padding: 14px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); text-align: center; position: relative; overflow: hidden; cursor: pointer; transition: all .2s; }
+.tl-cell::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.tl-cell.p1::before { background: var(--p1); }
+.tl-cell.p2::before { background: var(--p2); }
+.tl-cell.p3::before { background: var(--p3); }
+.tl-cell.p4::before { background: var(--p4); }
+.tl-cell:hover { border-color: var(--border2); transform: translateY(-2px); }
+.tl-months { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.tl-phase-name { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.tl-cell.p1 .tl-phase-name { color: var(--p1); }
+.tl-cell.p2 .tl-phase-name { color: var(--p2); }
+.tl-cell.p3 .tl-phase-name { color: var(--p3); }
+.tl-cell.p4 .tl-phase-name { color: var(--p4); }
+.tl-hours { font-size: 11px; color: var(--muted2); }
+
+/* Phase cards */
+.phase-card { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); margin-bottom: 16px; overflow: hidden; }
+.phase-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 14px; }
+.phase-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.phase-card.p1 .phase-icon { background: rgba(91,140,255,0.15); }
+.phase-card.p2 .phase-icon { background: rgba(0,196,140,0.15); }
+.phase-card.p3 .phase-icon { background: rgba(255,152,0,0.15); }
+.phase-card.p4 .phase-icon { background: rgba(176,107,255,0.15); }
+.phase-meta { flex: 1; }
+.phase-badge { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; margin-bottom: 5px; }
+.phase-card.p1 .phase-badge { background: rgba(91,140,255,0.15); color: #7ab4ff; }
+.phase-card.p2 .phase-badge { background: rgba(0,196,140,0.15); color: #5de3be; }
+.phase-card.p3 .phase-badge { background: rgba(255,152,0,0.15); color: #ffb74d; }
+.phase-card.p4 .phase-badge { background: rgba(176,107,255,0.15); color: #ce93d8; }
+.phase-title { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.phase-desc { font-size: 12px; color: var(--muted); }
+
+.phase-body { padding: 16px 20px; display: grid; gap: 10px; }
+.phase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.book-block { border-radius: var(--radius-sm); padding: 12px 14px; }
+.book-block.cam { background: var(--cambridge-soft); border: 1px solid rgba(42,127,255,0.2); }
+.book-block.gram { background: var(--grammar-soft); border: 1px solid rgba(0,196,140,0.2); }
+.book-block.mind { background: var(--mindset-soft); border: 1px solid rgba(255,112,67,0.2); }
+.book-block.all { background: var(--surface2); border: 1px solid var(--border2); }
+
+.book-label { display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 7px; }
+.book-label .dot { width: 6px; height: 6px; border-radius: 50%; }
+.book-block.cam .book-label { color: #7ab4ff; }
+.book-block.cam .dot { background: var(--cambridge); }
+.book-block.gram .book-label { color: #5de3be; }
+.book-block.gram .dot { background: var(--grammar); }
+.book-block.mind .book-label { color: #ffa07a; }
+.book-block.mind .dot { background: var(--mindset); }
+.book-block.all .book-label { color: var(--muted); }
+.book-block.all .dot { background: var(--muted); }
+
+.book-content { font-size: 12.5px; color: var(--text); line-height: 1.65; }
+.book-content li { margin-bottom: 4px; padding-left: 12px; position: relative; }
+.book-content li::before { content: '–'; position: absolute; left: 0; color: var(--muted2); }
+
+.goal-bar { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; display: flex; align-items: center; gap: 12px; }
+.goal-label { font-size: 11px; color: var(--muted); flex-shrink: 0; }
+.goal-track { flex: 1; height: 4px; background: rgba(255,255,255,0.07); border-radius: 4px; overflow: hidden; }
+.goal-fill { height: 100%; border-radius: 4px; transition: width .6s ease; }
+.phase-card.p1 .goal-fill { background: var(--p1); }
+.phase-card.p2 .goal-fill { background: var(--p2); }
+.phase-card.p3 .goal-fill { background: var(--p3); }
+.phase-card.p4 .goal-fill { background: var(--p4); }
+.goal-band { font-size: 12px; font-weight: 600; flex-shrink: 0; }
+.phase-card.p1 .goal-band { color: var(--p1); }
+.phase-card.p2 .goal-band { color: var(--p2); }
+.phase-card.p3 .goal-band { color: var(--p3); }
+.phase-card.p4 .goal-band { color: var(--p4); }
+
+/* ===================== WEEKLY VIEW ===================== */
+.phase-selector { display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.phase-sel-btn { padding: 7px 16px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.phase-sel-btn:hover { color: var(--text); border-color: var(--border2); }
+.phase-sel-btn.active { color: var(--text); }
+.phase-sel-btn.active.p1 { background: rgba(91,140,255,0.15); border-color: rgba(91,140,255,0.4); color: var(--p1); }
+.phase-sel-btn.active.p2 { background: rgba(0,196,140,0.15); border-color: rgba(0,196,140,0.4); color: var(--p2); }
+.phase-sel-btn.active.p3 { background: rgba(255,152,0,0.15); border-color: rgba(255,152,0,0.4); color: var(--p3); }
+.phase-sel-btn.active.p4 { background: rgba(176,107,255,0.15); border-color: rgba(176,107,255,0.4); color: var(--p4); }
+
+.weekly-panel { display: none; }
+.weekly-panel.active { display: block; }
+
+.week-grid { display: grid; gap: 10px; }
+.week-card { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+.week-header { padding: 11px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.week-num { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; flex-shrink: 0; }
+.week-title { font-size: 13px; font-weight: 600; color: var(--text); }
+.week-intensity { margin-left: auto; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+
+.week-body { padding: 12px 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.day-block { background: var(--surface2); border-radius: 7px; padding: 9px 11px; border: 1px solid var(--border); }
+.day-label { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted2); margin-bottom: 5px; }
+.day-item { font-size: 11.5px; color: var(--text); line-height: 1.55; margin-bottom: 3px; }
+.day-item .src { font-size: 10px; padding: 1px 6px; border-radius: 10px; display: inline-block; margin-top: 2px; }
+.src.cam { background: var(--cambridge-soft); color: #7ab4ff; }
+.src.gram { background: var(--grammar-soft); color: #5de3be; }
+.src.mind { background: var(--mindset-soft); color: #ffa07a; }
+
+.week-tip { margin: 0 16px 12px; padding: 9px 12px; background: var(--gold-soft); border: 1px solid rgba(245,200,66,0.2); border-radius: 7px; font-size: 11.5px; color: #e8d47a; line-height: 1.55; }
+.week-tip strong { font-weight: 600; }
+
+/* band target badge */
+.band-target { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-top: 8px; }
+
+/* responsive */
+@media (max-width: 600px) {
+  .header-title { font-size: 30px; }
+  .timeline-bar { grid-template-columns: repeat(2,1fr); }
+  .phase-grid { grid-template-columns: 1fr; }
+  .week-body { grid-template-columns: 1fr; }
+}
+
+/* Animations */
+@keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+.phase-card, .week-card { animation: fadeUp .35s ease both; }
+.phase-card:nth-child(1) { animation-delay: .05s; }
+.phase-card:nth-child(2) { animation-delay: .1s; }
+.phase-card:nth-child(3) { animation-delay: .15s; }
+.phase-card:nth-child(4) { animation-delay: .2s; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-eyebrow">IELTS Academic · Band 4.0 → 6.5</div>
+    <h1 class="header-title">Lộ trình <em>7 tháng</em><br>chinh phục IELTS</h1>
+    <p class="header-sub">Kết hợp 3 bộ sách: Cambridge Guide · Grammar in Use · Mindset for IELTS · Tháng 4 – Tháng 12/2025</p>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item cam"><span class="legend-dot"></span>The Official Cambridge Guide to IELTS</div>
+    <div class="legend-item gram"><span class="legend-dot"></span>Grammar in Use (xanh dương)</div>
+    <div class="legend-item mind"><span class="legend-dot"></span>Mindset for IELTS (Foundation + Level 1)</div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('monthly')">Tổng quan tháng</button>
+    <button class="tab-btn" onclick="switchTab('weekly')">Chi tiết tuần</button>
+  </div>
+
+  <!-- ============ MONTHLY VIEW ============ -->
+  <div class="view active" id="view-monthly">
+
+    <div class="timeline-bar">
+      <div class="tl-cell p1"><div class="tl-months">Tháng 4 – 5</div><div class="tl-phase-name">Nền tảng</div><div class="tl-hours">1–2h/ngày</div></div>
+      <div class="tl-cell p2"><div class="tl-months">Tháng 6 – 8</div><div class="tl-phase-name">Chuyên sâu</div><div class="tl-hours">3–4h/ngày</div></div>
+      <div class="tl-cell p3"><div class="tl-months">Tháng 9 – 10</div><div class="tl-phase-name">Luyện đề</div><div class="tl-hours">3–4h/ngày</div></div>
+      <div class="tl-cell p4"><div class="tl-months">Tháng 11 – 12</div><div class="tl-phase-name">Giữ form</div><div class="tl-hours">1–2h/ngày</div></div>
+    </div>
+
+    <!-- Phase 1 -->
+    <div class="phase-card p1">
+      <div class="phase-header">
+        <div class="phase-icon">📐</div>
+        <div class="phase-meta">
+          <span class="phase-badge">Giai đoạn 1 · Tháng 4–5</span>
+          <div class="phase-title">Nền tảng — Hiểu cấu trúc & sửa lỗi cơ bản</div>
+          <div class="phase-desc">Bận học trên lớp · Học 1–2 tiếng/ngày khi có thể · Không bỏ hẳn dù bận</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-grid">
+          <div class="book-block cam">
+            <div class="book-label"><span class="dot"></span>Cambridge Guide</div>
+            <ul class="book-content">
+              <li>Đọc IELTS Academic Summary toàn bộ (tuần 1 bắt buộc)</li>
+              <li>Reading Unit 1–4: skimming, scanning, T/F/NG</li>
+              <li>Speaking Unit 1–2: cấu trúc Part 1, nghe mẫu DVD</li>
+              <li>Listening Unit 1–2: làm quen dạng bài</li>
+            </ul>
+          </div>
+          <div class="book-block gram">
+            <div class="book-label"><span class="dot"></span>Grammar in Use</div>
+            <ul class="book-content">
+              <li>Unit 1–5: Present tenses (simple/continuous)</li>
+              <li>Unit 6–10: Past tenses</li>
+              <li>Unit 11–15: Future forms</li>
+              <li>Unit 67–72: Articles (a/an/the) — lỗi cực phổ biến</li>
+              <li>20 phút/ngày, mỗi ngày 1 unit nhỏ</li>
+            </ul>
+          </div>
+        </div>
+        <div class="book-block mind">
+          <div class="book-label"><span class="dot"></span>Mindset for IELTS — Foundation</div>
+          <ul class="book-content">
+            <li>Unit 1–3: Vocabulary building theo chủ đề (Education, Work, Environment)</li>
+            <li>Học Word Forms mỗi unit: noun / verb / adjective / adverb</li>
+            <li>Speaking: luyện câu trả lời ngắn Part 1 theo Mindset Foundation</li>
+          </ul>
+        </div>
+        <div class="goal-bar">
+          <span class="goal-label">Mục tiêu cuối giai đoạn</span>
+          <div class="goal-track"><div class="goal-fill" style="width:50%"></div></div>
+          <span class="goal-band">Band 5.0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="phase-card p2">
+      <div class="phase-header">
+        <div class="phase-icon">🚀</div>
+        <div class="phase-meta">
+          <span class="phase-badge">Giai đoạn 2 · Tháng 6–8</span>
+          <div class="phase-title">Chuyên sâu — Hoàn thành Skills Units & từ vựng học thuật</div>
+          <div class="phase-desc">Nghỉ hè · 3–4 tiếng/ngày · Trọng tâm Reading + Speaking + Writing</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-grid">
+          <div class="book-block cam">
+            <div class="book-label"><span class="dot"></span>Cambridge Guide</div>
+            <ul class="book-content">
+              <li>Reading Unit 5–10: matching headings, sentence completion, diagram</li>
+              <li>Writing Unit 1–6: Task 1 (charts/graphs) + Task 2 (essay structure)</li>
+              <li>Speaking Unit 3–6: Part 2 cue card, Part 3 discussion</li>
+              <li>Listening Unit 3–8: multiple choice, map labelling, flow chart</li>
+              <li>Học kỹ "How to do it" trước mỗi unit</li>
+            </ul>
+          </div>
+          <div class="book-block gram">
+            <div class="book-label"><span class="dot"></span>Grammar in Use</div>
+            <ul class="book-content">
+              <li>Unit 20–30: Modal verbs (can/could/may/might/should)</li>
+              <li>Unit 31–40: If-clauses (conditional 1, 2, 3)</li>
+              <li>Unit 41–50: Passive voice — quan trọng cho Writing Task 1</li>
+              <li>Unit 80–90: Relative clauses — nâng cấp câu phức</li>
+              <li>Unit 100–110: Comparison (as…as, more…than, the most)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="book-block mind">
+          <div class="book-label"><span class="dot"></span>Mindset for IELTS — Foundation + Level 1</div>
+          <ul class="book-content">
+            <li><strong>Foundation Unit 4–8:</strong> Vocabulary theo chủ đề (Health, Technology, Society, Culture, Nature)</li>
+            <li><strong>Level 1 Unit 1–5:</strong> Bắt đầu Academic vocabulary — synonyms, paraphrase practice</li>
+            <li><strong>Writing:</strong> Dùng Mindset Level 1 để học cấu trúc Task 2 essay (opinion / discussion / problem-solution)</li>
+            <li><strong>Từ cấm — thay thế:</strong> very → extremely/considerably, good → beneficial/effective, bad → detrimental, important → crucial/significant</li>
+          </ul>
+        </div>
+        <div class="goal-bar">
+          <span class="goal-label">Mục tiêu cuối giai đoạn</span>
+          <div class="goal-track"><div class="goal-fill" style="width:72%"></div></div>
+          <span class="goal-band">Band 5.5 – 6.0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="phase-card p3">
+      <div class="phase-header">
+        <div class="phase-icon">🎯</div>
+        <div class="phase-meta">
+          <span class="phase-badge">Giai đoạn 3 · Tháng 9–10</span>
+          <div class="phase-title">Luyện đề — 8 Practice Tests + phân tích lỗi</div>
+          <div class="phase-desc">Vẫn nghỉ hè · 3–4 tiếng/ngày · Điều kiện thi thật</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-grid">
+          <div class="book-block cam">
+            <div class="book-label"><span class="dot"></span>Cambridge Guide</div>
+            <ul class="book-content">
+              <li>Practice Test 1 trước (có hints & reminders)</li>
+              <li>Tests 2–4: Academic Reading + Writing tập trung</li>
+              <li>Tests 5–8: Full test đúng giờ không dừng</li>
+              <li>Sau mỗi test: đọc kỹ Answer Key + giải thích</li>
+              <li>Lỗi sai → quay lại đúng unit trong Skills Section</li>
+            </ul>
+          </div>
+          <div class="book-block gram">
+            <div class="book-label"><span class="dot"></span>Grammar in Use</div>
+            <ul class="book-content">
+              <li>Ôn lại unit tương ứng lỗi sai trong Practice Tests</li>
+              <li>Unit 46–55: Reported speech — quan trọng cho Listening</li>
+              <li>Unit 111–120: Prepositions — lỗi nhỏ nhưng trừ band thật</li>
+              <li>Không học unit mới — chỉ ôn và củng cố</li>
+            </ul>
+          </div>
+        </div>
+        <div class="book-block mind">
+          <div class="book-label"><span class="dot"></span>Mindset for IELTS — Level 1</div>
+          <ul class="book-content">
+            <li><strong>Level 1 Unit 6–10:</strong> Luyện Speaking Part 2 theo chủ đề nâng cao (describe a place / person / experience / object)</li>
+            <li>Dùng Mindset vocabulary lists để làm giàu bài Writing khi luyện đề</li>
+            <li>Luyện paraphrase đề bài Task 2 — không chép lại từ đề</li>
+          </ul>
+        </div>
+        <div class="goal-bar">
+          <span class="goal-label">Mục tiêu cuối giai đoạn</span>
+          <div class="goal-track"><div class="goal-fill" style="width:88%"></div></div>
+          <span class="goal-band">Band 6.0 – 6.5</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 4 -->
+    <div class="phase-card p4">
+      <div class="phase-header">
+        <div class="phase-icon">🏁</div>
+        <div class="phase-meta">
+          <span class="phase-badge">Giai đoạn 4 · Tháng 11–12</span>
+          <div class="phase-title">Giữ form — Duy trì & tự tin trước ngày thi</div>
+          <div class="phase-desc">Bận học trên lớp · 1–2 tiếng/ngày · Không học thêm mới</div>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-grid">
+          <div class="book-block cam">
+            <div class="book-label"><span class="dot"></span>Cambridge Guide</div>
+            <ul class="book-content">
+              <li>1 bài Reading/tuần để giữ tốc độ</li>
+              <li>1 bài Writing Task 2/tuần — tự chấm theo tiêu chí 4 bands</li>
+              <li>Đọc lại IELTS Summary tuần cuối trước thi</li>
+            </ul>
+          </div>
+          <div class="book-block gram">
+            <div class="book-label"><span class="dot"></span>Grammar in Use</div>
+            <ul class="book-content">
+              <li>Chỉ ôn lại unit đã đánh dấu sai nhiều</li>
+              <li>Không mở unit mới — tập trung củng cố những gì đã học</li>
+            </ul>
+          </div>
+        </div>
+        <div class="book-block mind">
+          <div class="book-label"><span class="dot"></span>Mindset for IELTS</div>
+          <ul class="book-content">
+            <li>Ôn lại Vocabulary lists theo chủ đề có thể ra đề thi</li>
+            <li>Speaking: luyện 10 phút/ngày với chủ đề ngẫu nhiên từ Mindset</li>
+            <li>Tuần cuối: đọc lại Speaking tips từ Cambridge Guide + Mindset Level 1</li>
+          </ul>
+        </div>
+        <div class="goal-bar">
+          <span class="goal-label">Mục tiêu ngày thi</span>
+          <div class="goal-track"><div class="goal-fill" style="width:95%"></div></div>
+          <span class="goal-band">Band 6.0 – 6.5 ✓</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end monthly view -->
+
+  <!-- ============ WEEKLY VIEW ============ -->
+  <div class="view" id="view-weekly">
+
+    <div class="phase-selector">
+      <button class="phase-sel-btn active p1" onclick="switchPhase('ph1')">Giai đoạn 1 · T4–5</button>
+      <button class="phase-sel-btn p2" onclick="switchPhase('ph2')">Giai đoạn 2 · T6–8</button>
+      <button class="phase-sel-btn p3" onclick="switchPhase('ph3')">Giai đoạn 3 · T9–10</button>
+      <button class="phase-sel-btn p4" onclick="switchPhase('ph4')">Giai đoạn 4 · T11–12</button>
+    </div>
+
+    <!-- Phase 1 weeks -->
+    <div class="weekly-panel active" id="ph1">
+      <div class="week-grid">
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(91,140,255,0.15);color:var(--p1)">Tuần 1</span>
+            <span class="week-title">Đọc IELTS Summary + Bắt đầu Grammar</span>
+            <span class="week-intensity">~1h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">Thứ 2 – 3</div>
+              <div class="day-item">Đọc IELTS Academic Summary toàn bộ trong Cambridge Guide <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Ghi chú 11 dạng câu hỏi Reading, cấu trúc Writing</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Thứ 4 – 5</div>
+              <div class="day-item">Grammar in Use Unit 1–3: Present Simple & Continuous <span class="src gram">Grammar</span></div>
+              <div class="day-item">Mindset Foundation Unit 1: Topic vocabulary – Education <span class="src mind">Mindset</span></div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Thứ 6 – CN</div>
+              <div class="day-item">Grammar Unit 4–5: Present Perfect <span class="src gram">Grammar</span></div>
+              <div class="day-item">Mindset Foundation: Word forms – noun/verb từ Unit 1 <span class="src mind">Mindset</span></div>
+            </div>
+          </div>
+          <div class="week-tip">💡 <strong>Cambridge nhắc:</strong> Đọc Summary là bước bắt buộc. Hiểu cấu trúc đề thi trước khi học bất kỳ unit nào.</div>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(91,140,255,0.15);color:var(--p1)">Tuần 2</span>
+            <span class="week-title">Reading Unit 1–2 + Grammar Past tenses</span>
+            <span class="week-intensity">~1.5h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">Thứ 2 – 3</div>
+              <div class="day-item">Cambridge Reading Unit 1: Skimming & Scanning <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Làm bài tập Unit 1, kiểm tra Answer Key + đọc giải thích</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Thứ 4 – 5</div>
+              <div class="day-item">Cambridge Reading Unit 2: True / False / Not Given <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Grammar Unit 6–8: Past Simple & Continuous <span class="src gram">Grammar</span></div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Thứ 6 – CN</div>
+              <div class="day-item">Mindset Foundation Unit 2: Work & Career vocabulary <span class="src mind">Mindset</span></div>
+              <div class="day-item">Cambridge Speaking Unit 1: Nghe mẫu Part 1 <span class="src cam">Cambridge</span></div>
+            </div>
+          </div>
+          <div class="week-tip">💡 Khi làm sai T/F/NG: đọc kỹ giải thích trong Answer Key — Cambridge giải thích tại sao "Not Given" khác "False".</div>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(91,140,255,0.15);color:var(--p1)">Tuần 3–4</span>
+            <span class="week-title">Reading Unit 3–4 + Articles + Speaking Unit 1–2</span>
+            <span class="week-intensity">~1.5h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">Reading</div>
+              <div class="day-item">Unit 3: Matching headings <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Unit 4: Sentence completion</div>
+              <div class="day-item">Ghi vocab học thuật gặp trong bài đọc vào sổ tay</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Grammar</div>
+              <div class="day-item">Unit 67–72: Articles a/an/the — học kỹ, đây là lỗi số 1 của thí sinh Việt Nam <span class="src gram">Grammar</span></div>
+              <div class="day-item">Unit 11–13: Future forms (will / going to)</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Speaking + Mindset</div>
+              <div class="day-item">Cambridge Speaking Unit 2: Cách mở rộng câu trả lời <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Mindset Foundation Unit 3: Environment vocab <span class="src mind">Mindset</span></div>
+              <div class="day-item">Tự nói 5 phút/ngày, ghi âm lại</div>
+            </div>
+          </div>
+          <div class="week-tip">💡 Ngày bận không có 1 tiếng: chỉ cần học 20 từ Mindset vocab hoặc làm 1 unit Grammar nhỏ (~15 phút). Đừng bỏ hẳn.</div>
+        </div>
+
+      </div>
+    </div><!-- end ph1 -->
+
+    <!-- Phase 2 weeks -->
+    <div class="weekly-panel" id="ph2">
+      <div class="week-grid">
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(0,196,140,0.15);color:var(--p2)">Tuần 1–2 (T6)</span>
+            <span class="week-title">Reading chuyên sâu + Writing Task 1 + Modal verbs</span>
+            <span class="week-intensity">~3h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">Sáng · Reading</div>
+              <div class="day-item">Cambridge Reading Unit 5–6: Matching information, Matching features <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Đọc "How to do it" → Làm bài → Đọc giải thích</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Chiều · Writing</div>
+              <div class="day-item">Cambridge Writing Unit 1–2: Task 1 Bar/Line charts <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Mindset Level 1 Unit 1–2: Từ mô tả xu hướng (rise, fall, fluctuate…) <span class="src mind">Mindset</span></div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Tối · Grammar</div>
+              <div class="day-item">Grammar Unit 20–25: Modal verbs (must/should/could) <span class="src gram">Grammar</span></div>
+              <div class="day-item">Grammar Unit 41–45: Passive voice — cần cho Task 1</div>
+            </div>
+          </div>
+          <div class="week-tip">💡 Writing Task 1: luôn dùng Passive voice khi mô tả biểu đồ — "It can be seen that…", "A sharp increase was recorded…"</div>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(0,196,140,0.15);color:var(--p2)">Tuần 3–4 (T6)</span>
+            <span class="week-title">Listening + Speaking Part 2 + Conditionals</span>
+            <span class="week-intensity">~3h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">Sáng · Listening</div>
+              <div class="day-item">Cambridge Listening Unit 3–5: Multiple choice, Form completion <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Nghe 2 lần: lần 1 làm bài, lần 2 đọc script song song</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Chiều · Speaking</div>
+              <div class="day-item">Cambridge Speaking Unit 3–4: Part 2 cue card <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Mindset Level 1 Unit 3: Speaking fluency strategies <span class="src mind">Mindset</span></div>
+              <div class="day-item">Ghi âm Part 2, nghe lại, tự chấm</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Tối · Grammar</div>
+              <div class="day-item">Grammar Unit 31–36: If-clauses 1, 2, 3 <span class="src gram">Grammar</span></div>
+              <div class="day-item">Áp dụng ngay vào Writing Task 2: "If governments invest…"</div>
+            </div>
+          </div>
+          <div class="week-tip">💡 Speaking Part 2: dùng cấu trúc PEEL — Point, Example, Explanation, Link back. Tập nói đủ 2 phút dù chưa mượt.</div>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(0,196,140,0.15);color:var(--p2)">Tháng 7 (4 tuần)</span>
+            <span class="week-title">Writing Task 2 chuyên sâu + Vocabulary nâng cao</span>
+            <span class="week-intensity">~3.5h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">Sáng · Writing</div>
+              <div class="day-item">Cambridge Writing Unit 3–6: Task 2 Opinion / Discussion / Problem-Solution <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Viết 1 bài Task 2/tuần (250 từ), tự chấm theo 4 tiêu chí</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Chiều · Vocab</div>
+              <div class="day-item">Mindset Level 1 Unit 4–7: Academic vocabulary theo chủ đề <span class="src mind">Mindset</span></div>
+              <div class="day-item">Học word forms: achieve → achievement → achievable</div>
+              <div class="day-item">Danh sách từ cấm + từ thay thế học thuật</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Tối · Grammar</div>
+              <div class="day-item">Grammar Unit 80–88: Relative clauses (who/which/that) <span class="src gram">Grammar</span></div>
+              <div class="day-item">Unit 100–108: Comparison structures</div>
+            </div>
+          </div>
+          <div class="week-tip">💡 Writing Task 2 chiếm gấp đôi điểm Task 1. Dành 40 phút cho Task 2, 20 phút cho Task 1 — đúng như Cambridge hướng dẫn.</div>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(0,196,140,0.15);color:var(--p2)">Tháng 8 (4 tuần)</span>
+            <span class="week-title">Hoàn thành tất cả Skills Units + Speaking Part 3</span>
+            <span class="week-intensity">~3h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">Reading + Listening</div>
+              <div class="day-item">Cambridge Reading Unit 7–10: Diagram labelling, Short answers <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Listening Unit 6–8: Map labelling, Flow chart</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Speaking</div>
+              <div class="day-item">Cambridge Speaking Unit 5–6: Part 3 Discussion <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Mindset Level 1 Unit 8–10: Expressing opinions, agreeing/disagreeing <span class="src mind">Mindset</span></div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Grammar + Review</div>
+              <div class="day-item">Grammar Unit 46–54: Reported speech <span class="src gram">Grammar</span></div>
+              <div class="day-item">Ôn lại tất cả unit đã học, sửa lỗi thường xuyên mắc</div>
+            </div>
+          </div>
+          <div class="week-tip">💡 Phải hoàn thành TẤT CẢ Skills Units trước khi làm Practice Tests — đây là yêu cầu rõ ràng của Cambridge.</div>
+        </div>
+
+      </div>
+    </div><!-- end ph2 -->
+
+    <!-- Phase 3 weeks -->
+    <div class="weekly-panel" id="ph3">
+      <div class="week-grid">
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(255,152,0,0.15);color:var(--p3)">Tháng 9 · T1–2</span>
+            <span class="week-title">Practice Test 1–2 + Phân tích lỗi sai</span>
+            <span class="week-intensity">~3h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">Thứ 2 · Làm test</div>
+              <div class="day-item">Practice Test 1 (có hints) — làm đúng giờ toàn bộ 4 kỹ năng <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Ghi lại tất cả câu sai, không xem đáp án trước</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Thứ 3–4 · Phân tích</div>
+              <div class="day-item">Chấm điểm → Đọc giải thích từng câu sai <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Phân loại lỗi: dạng bài nào sai nhiều nhất?</div>
+              <div class="day-item">Quay lại đúng unit trong Skills Section để ôn</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Thứ 5–CN</div>
+              <div class="day-item">Ôn Grammar unit liên quan đến lỗi trong test <span class="src gram">Grammar</span></div>
+              <div class="day-item">Mindset Level 1: bổ sung vocab còn thiếu khi làm test <span class="src mind">Mindset</span></div>
+              <div class="day-item">Cuối tuần: Practice Test 2</div>
+            </div>
+          </div>
+          <div class="week-tip">💡 Quy trình vàng: Làm test → Chấm điểm → Phân tích lỗi → Ôn unit → Làm test tiếp. Không bỏ qua bước phân tích.</div>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(255,152,0,0.15);color:var(--p3)">Tháng 9 · T3–4</span>
+            <span class="week-title">Practice Test 3–4 + Writing feedback</span>
+            <span class="week-intensity">~3h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">Tests</div>
+              <div class="day-item">Test 3 + 4: full Academic conditions <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Mục tiêu Reading: xong 3 passages trong 60 phút</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Writing</div>
+              <div class="day-item">Viết lại Task 2 từ test sai, áp dụng cấu trúc Mindset Level 1 <span class="src mind">Mindset</span></div>
+              <div class="day-item">Tự chấm theo 4 tiêu chí: Task Achievement / Coherence / Lexical / Grammar</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Speaking</div>
+              <div class="day-item">Luyện Part 2 + 3 từ test — ghi âm so sánh với mẫu Cambridge <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Bổ sung idioms & collocations từ Mindset Level 1 <span class="src mind">Mindset</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(255,152,0,0.15);color:var(--p3)">Tháng 10 · T1–4</span>
+            <span class="week-title">Practice Test 5–8 + Hoàn thiện band 6.0+</span>
+            <span class="week-intensity">~3h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">Tests 5–8</div>
+              <div class="day-item">1 test/tuần — không có hints, điều kiện thi thật hoàn toàn <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Tính band score sau mỗi test để theo dõi tiến bộ</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Vocab</div>
+              <div class="day-item">Mindset Level 1: ôn lại toàn bộ vocabulary lists <span class="src mind">Mindset</span></div>
+              <div class="day-item">Lập sổ tay từ vựng: 10 chủ đề IELTS hay ra đề</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Grammar</div>
+              <div class="day-item">Grammar Unit 111–120: Prepositions <span class="src gram">Grammar</span></div>
+              <div class="day-item">Ôn lại toàn bộ unit đã đánh dấu — không học mới</div>
+            </div>
+          </div>
+          <div class="week-tip">💡 Mục tiêu tháng 10: Speaking Part 2 nói đủ 2 phút tự nhiên, Reading đúng 28/40 câu trở lên.</div>
+        </div>
+
+      </div>
+    </div><!-- end ph3 -->
+
+    <!-- Phase 4 weeks -->
+    <div class="weekly-panel" id="ph4">
+      <div class="week-grid">
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(176,107,255,0.15);color:var(--p4)">Tháng 11</span>
+            <span class="week-title">Duy trì kỹ năng — học nhẹ kết hợp trường</span>
+            <span class="week-intensity">~1.5h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">Reading</div>
+              <div class="day-item">1 passage Reading/tuần từ Cambridge Practice Tests series 14–18 (mua thêm) <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Không cần phân tích sâu — giữ tốc độ là đủ</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Speaking</div>
+              <div class="day-item">10 phút/ngày: chọn topic ngẫu nhiên từ Mindset, nói tự do <span class="src mind">Mindset</span></div>
+              <div class="day-item">Ôn lại Speaking strategies từ Cambridge Guide</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Grammar + Writing</div>
+              <div class="day-item">Ôn lại unit Grammar hay sai nhất <span class="src gram">Grammar</span></div>
+              <div class="day-item">1 bài Writing Task 2/tuần, tự chấm</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <span class="week-num" style="background:rgba(176,107,255,0.15);color:var(--p4)">Tháng 12</span>
+            <span class="week-title">Tuần cuối — không học mới, giữ tâm lý vững</span>
+            <span class="week-intensity">~1h/ngày</span>
+          </div>
+          <div class="week-body">
+            <div class="day-block">
+              <div class="day-label">2 tuần đầu</div>
+              <div class="day-item">Ôn lại lỗi sai từ Practice Tests <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Reading 1 passage/tuần, Speaking 10 phút/ngày</div>
+              <div class="day-item">Ôn Vocabulary lists Mindset quan trọng nhất <span class="src mind">Mindset</span></div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Tuần 3</div>
+              <div class="day-item">Đọc lại IELTS Summary trong Cambridge Guide <span class="src cam">Cambridge</span></div>
+              <div class="day-item">Ôn lại Speaking tips Part 1/2/3 lần cuối</div>
+              <div class="day-item">Không mở bài tập mới</div>
+            </div>
+            <div class="day-block">
+              <div class="day-label">Tuần thi</div>
+              <div class="day-item">Chỉ Speaking 10 phút/ngày với chủ đề quen</div>
+              <div class="day-item">Ngủ đủ giấc, ôn lại test tips Cambridge</div>
+              <div class="day-item">🎯 Tự tin — bạn đã chuẩn bị đủ rồi!</div>
+            </div>
+          </div>
+          <div class="week-tip">💡 Tuần cuối trước thi: Cambridge nhắc không học thêm nội dung mới. Tự tin với những gì đã học là chiến lược tốt nhất.</div>
+        </div>
+
+      </div>
+    </div><!-- end ph4 -->
+
+  </div><!-- end weekly view -->
+
+</div><!-- end page -->
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('view-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function switchPhase(phase) {
+  document.querySelectorAll('.weekly-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.phase-sel-btn').forEach(b => b.classList.remove('active', 'p1','p2','p3','p4'));
+  document.getElementById(phase).classList.add('active');
+  const btn = event.target;
+  btn.classList.add('active');
+  const cls = phase === 'ph1' ? 'p1' : phase === 'ph2' ? 'p2' : phase === 'ph3' ? 'p3' : 'p4';
+  btn.classList.add(cls);
+}
+</script>
+</body>
+</html>
